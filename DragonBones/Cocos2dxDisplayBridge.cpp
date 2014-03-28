@@ -10,6 +10,7 @@ namespace dragonBones
         }
         void Cocos2dxDisplayBridge::setVisible(bool value)
         {
+            mDisplayNode->getNode()->setVisible(value);
         }
         
         /**
