@@ -35,7 +35,7 @@ TransformUtil.cpp \
 XMLDataParser.cpp \
 
 # TODO(hejiangzhou): Shall we disable exception?
-LOCAL_CPPFLAGS := -fexceptions
+LOCAL_CPPFLAGS := -fexceptions -std=c++11
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
 

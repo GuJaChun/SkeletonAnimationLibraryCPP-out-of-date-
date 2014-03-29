@@ -6,6 +6,7 @@
 #include "Cocos2dxTextureAtlas.h"
 #include "TimelineState.h"
 #include "AnimationState.h"
+#include "platform/CCFileUtils.h"
 
 USING_NS_CC;
 
@@ -102,9 +103,14 @@ void HelloWorld::createSkeletonBody()
 {
     dragonBones::XMLDataParser parser;
 
+    unsigned long dummySize;
+
     // 使用XML解析器载入skeleton的xml
     dragonBones::XMLDocument doc;
-    doc.LoadFile("skeleton.xml");
+    unsigned char* skeleton_data = CCFileUtils::sharedFileUtils()->
+        getFileData("skeleton.xml", "rb", &dummySize);
+    doc.Parse(reinterpret_cast<char*>(skeleton_data));
+    delete[] skeleton_data;
     
     // 类工厂
     dragonBones::Cocos2dxFactory fac;
@@ -113,7 +119,11 @@ void HelloWorld::createSkeletonBody()
 
     // 载入皮肤数据
     dragonBones::XMLDocument doc1;
-    doc1.LoadFile("texture.xml");
+    unsigned char* texture_data = CCFileUtils::sharedFileUtils()->
+        getFileData("texture.xml", "rb", &dummySize);
+    doc1.Parse(reinterpret_cast<char*>(texture_data));
+    delete[] texture_data;
+
     // 解析皮肤数据
     fac.addTextureAtlas(new dragonBones::Cocos2dxTextureAtlas(parser.parseTextureAtlasData(doc1.RootElement())));
 
