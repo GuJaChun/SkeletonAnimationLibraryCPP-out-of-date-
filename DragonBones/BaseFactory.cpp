@@ -279,7 +279,7 @@ namespace dragonBones
         if(!animationName.empty() && animationName != armatureName)
         {
             ArmatureData* animationArmatureData = data->getArmatureData(animationName);
-            // ȡĬ�϶���
+            // 取默认动画
             //if(!animationArmatureData)
             //{
             //    for (skeletonName in _dataDic)

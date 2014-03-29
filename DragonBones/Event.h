@@ -22,23 +22,23 @@ namespace dragonBones
     {
     public:
         typedef void (*Function)(Event *event , void *userData);
-        // Ê¹ÓÃ EventDispatcher ¶ÔÏó×¢²áÊÂ¼şÕìÌıÆ÷¶ÔÏó£¬ÒÔÊ¹ÕìÌıÆ÷ÄÜ¹»½ÓÊÕÊÂ¼şÍ¨Öª¡£ 
+        // ä½¿ç”¨ EventDispatcher å¯¹è±¡æ³¨å†Œäº‹ä»¶ä¾¦å¬å™¨å¯¹è±¡ï¼Œä»¥ä½¿ä¾¦å¬å™¨èƒ½å¤Ÿæ¥æ”¶äº‹ä»¶é€šçŸ¥ã€‚ 
         void addEventListener(const String &type, Function listener , void *userData);
 
-        // ½«ÊÂ¼şµ÷¶Èµ½ÊÂ¼şÁ÷ÖĞ¡£
+        // å°†äº‹ä»¶è°ƒåº¦åˆ°äº‹ä»¶æµä¸­ã€‚
         void dispatchEvent(Event *event);
 
-        // ¼ì²é EventDispatcher ¶ÔÏóÊÇ·ñÎªÌØ¶¨ÊÂ¼şÀàĞÍ×¢²áÁËÈÎºÎÕìÌıÆ÷¡£  
+        // æ£€æŸ¥ EventDispatcher å¯¹è±¡æ˜¯å¦ä¸ºç‰¹å®šäº‹ä»¶ç±»å‹æ³¨å†Œäº†ä»»ä½•ä¾¦å¬å™¨ã€‚  
         bool hasEventListener(const String &type)const;
 
-        // ´Ó EventDispatcher ¶ÔÏóÖĞÉ¾³ıÕìÌıÆ÷¡£ 
+        // ä» EventDispatcher å¯¹è±¡ä¸­åˆ é™¤ä¾¦å¬å™¨ã€‚ 
         void removeEventListener(const String &type, Function listener);
     protected:
 
         typedef std::pair<Function , void*> Callback;
         typedef std::list<Callback> Listeners;
         typedef std::map<String , Listeners> EventListeners;
-        // ±£´æËùÓĞÕìÌıÆ÷ÁĞ±í
+        // ä¿å­˜æ‰€æœ‰ä¾¦å¬å™¨åˆ—è¡¨
         EventListeners mEventListeners;
     };
 }

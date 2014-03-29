@@ -105,40 +105,40 @@ void HelloWorld::createSkeletonBody()
 
     unsigned long dummySize;
 
-    // Ê¹ÓÃXML½âÎöÆ÷ÔØÈëskeletonµÄxml
+    // ä½¿ç”¨XMLè§£æå™¨è½½å…¥skeletonçš„xml
     dragonBones::XMLDocument doc;
     unsigned char* skeleton_data = CCFileUtils::sharedFileUtils()->
         getFileData("skeleton.xml", "rb", &dummySize);
     doc.Parse(reinterpret_cast<char*>(skeleton_data));
     delete[] skeleton_data;
     
-    // Àà¹¤³§
+    // ç±»å·¥å‚
     dragonBones::Cocos2dxFactory fac;
-    // ½âÎö¹Ç÷À¶¯»­Êı¾İ
+    // è§£æéª¨éª¼åŠ¨ç”»æ•°æ®
     fac.addSkeletonData(parser.parseSkeletonData(doc.RootElement()) );
 
-    // ÔØÈëÆ¤·ôÊı¾İ
+    // è½½å…¥çš®è‚¤æ•°æ®
     dragonBones::XMLDocument doc1;
     unsigned char* texture_data = CCFileUtils::sharedFileUtils()->
         getFileData("texture.xml", "rb", &dummySize);
     doc1.Parse(reinterpret_cast<char*>(texture_data));
     delete[] texture_data;
 
-    // ½âÎöÆ¤·ôÊı¾İ
+    // è§£æçš®è‚¤æ•°æ®
     fac.addTextureAtlas(new dragonBones::Cocos2dxTextureAtlas(parser.parseTextureAtlasData(doc1.RootElement())));
 
-    // Ê¹ÓÃ¸Õ¸ÕÔØÈëµÄ¹Ç÷À¶¯»­ºÍÆ¤·ôÊı¾İ´´½¨ÈËÎïÊµÀı
+    // ä½¿ç”¨åˆšåˆšè½½å…¥çš„éª¨éª¼åŠ¨ç”»å’Œçš®è‚¤æ•°æ®åˆ›å»ºäººç‰©å®ä¾‹
     mArm = fac.buildArmature("Zombie_polevaulter" , "" , "Zombie");
-    // °Ñ¸ù½ÚµãÈ¡³öÀ´
+    // æŠŠæ ¹èŠ‚ç‚¹å–å‡ºæ¥
     CCNode *skeletonNode = static_cast<dragonBones::CocosNode*>(mArm->getDisplay())->node;
     skeletonNode->setPosition(300,300);
-    // Ìí¼Óµ½³¡¾°ÖĞ
+    // æ·»åŠ åˆ°åœºæ™¯ä¸­
     addChild(skeletonNode);
 
-    // ²¥·Å×ßÂ·¶¯»­
+    // æ’­æ”¾èµ°è·¯åŠ¨ç”»
     mArm->getAnimation()->gotoAndPlay("anim_run");
 
-    // Ã¿Ö¡¸üĞÂ¶¯»­£¬Ã¿Ö¡¶¼»áµ÷ÓÃupdate
+    // æ¯å¸§æ›´æ–°åŠ¨ç”»ï¼Œæ¯å¸§éƒ½ä¼šè°ƒç”¨update
     this->scheduleUpdate();
 }
 
@@ -147,7 +147,7 @@ void HelloWorld::update( float dt )
     CC_UNUSED_PARAM(dt);
     if(mArm)
     {
-        // Ã¿Ö¡¶¼ÒªÅÜ°¡
+        // æ¯å¸§éƒ½è¦è·‘å•Š
         mArm->advanceTime(dt);
     }
 }

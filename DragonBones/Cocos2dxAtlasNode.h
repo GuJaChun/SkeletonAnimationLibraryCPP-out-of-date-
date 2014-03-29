@@ -43,7 +43,7 @@ protected:
     // This varible is only used for CCLabelAtlas FPS display. So plz don't modify its value.
     bool m_bIgnoreContentScaleFactor;
 
-    // Òª»­ÄÄ¸ö¾ØĞÎ
+    // è¦ç”»å“ªä¸ªçŸ©å½¢
     unsigned int m_nQuadIndex;
     
 public:

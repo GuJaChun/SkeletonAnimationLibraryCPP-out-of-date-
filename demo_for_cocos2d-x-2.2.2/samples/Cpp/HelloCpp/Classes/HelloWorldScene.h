@@ -24,7 +24,7 @@ public:
     CREATE_FUNC(HelloWorld);
 
 protected:
-    // 保存人物实例
+    // 淇濆瓨浜虹墿瀹炰緥
     dragonBones::Armature *mArm;
 };
 

@@ -2,14 +2,14 @@
 namespace dragonBones
 {
 
-    // Ê¹ÓÃ EventDispatcher ¶ÔÏó×¢²áÊÂ¼şÕìÌıÆ÷¶ÔÏó£¬ÒÔÊ¹ÕìÌıÆ÷ÄÜ¹»½ÓÊÕÊÂ¼şÍ¨Öª¡£ 
+    // ä½¿ç”¨ EventDispatcher å¯¹è±¡æ³¨å†Œäº‹ä»¶ä¾¦å¬å™¨å¯¹è±¡ï¼Œä»¥ä½¿ä¾¦å¬å™¨èƒ½å¤Ÿæ¥æ”¶äº‹ä»¶é€šçŸ¥ã€‚ 
     void EventDispatcher::addEventListener(const String &type, Function listener , void *userData)
     {
         Listeners &list = mEventListeners[type];
         list.push_back(Callback(listener ,userData));
     }
 
-    // ½«ÊÂ¼şµ÷¶Èµ½ÊÂ¼şÁ÷ÖĞ¡£
+    // å°†äº‹ä»¶è°ƒåº¦åˆ°äº‹ä»¶æµä¸­ã€‚
     void EventDispatcher::dispatchEvent(Event *event)
     {
         EventListeners::iterator iter = mEventListeners.find(event->getType());
@@ -23,13 +23,13 @@ namespace dragonBones
         delete event;
     }
 
-    // ¼ì²é EventDispatcher ¶ÔÏóÊÇ·ñÎªÌØ¶¨ÊÂ¼şÀàĞÍ×¢²áÁËÈÎºÎÕìÌıÆ÷¡£  
+    // æ£€æŸ¥ EventDispatcher å¯¹è±¡æ˜¯å¦ä¸ºç‰¹å®šäº‹ä»¶ç±»å‹æ³¨å†Œäº†ä»»ä½•ä¾¦å¬å™¨ã€‚  
     bool EventDispatcher::hasEventListener(const String &type)const
     {
         return mEventListeners.find(type) != mEventListeners.end();
     }
 
-    // ´Ó EventDispatcher ¶ÔÏóÖĞÉ¾³ıÕìÌıÆ÷¡£ 
+    // ä» EventDispatcher å¯¹è±¡ä¸­åˆ é™¤ä¾¦å¬å™¨ã€‚ 
     void EventDispatcher::removeEventListener(const String &type, Function listener)
     {
         EventListeners::iterator iter = mEventListeners.find(type);
