@@ -26,6 +26,9 @@ namespace dragonBones
             }
         }
         cocos2d::CCNode *node;
+
+        const cocos2d::CCNode *getNode() const { return node; }
+        cocos2d::CCNode *getNode() { return node; }
     };
 
     //class DisplayObject : public Object
