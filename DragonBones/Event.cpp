@@ -1,12 +1,12 @@
-#include "Event.h"
+﻿#include "Event.h"
 namespace dragonBones
 {
 
     // 使用 EventDispatcher 对象注册事件侦听器对象，以使侦听器能够接收事件通知。 
-    void EventDispatcher::addEventListener(const String &type, Function listener , void *userData)
+	void EventDispatcher::addEventListener(const String &type, Function listener, const std::string &key)
     {
         Listeners &list = mEventListeners[type];
-        list.push_back(Callback(listener ,userData));
+		list.push_back(Callback(listener, key));
     }
 
     // 将事件调度到事件流中。
@@ -17,7 +17,7 @@ namespace dragonBones
         {
             for(Listeners::iterator iterCallback = iter->second.begin() ; iterCallback != iter->second.end() ; iterCallback ++)
             {
-                iterCallback->first(event , iterCallback->second);
+                iterCallback->first(event);
             }
         }
         delete event;
@@ -30,14 +30,14 @@ namespace dragonBones
     }
 
     // 从 EventDispatcher 对象中删除侦听器。 
-    void EventDispatcher::removeEventListener(const String &type, Function listener)
+    void EventDispatcher::removeEventListener(const String &type, const std::string &key)
     {
         EventListeners::iterator iter = mEventListeners.find(type);
         if(iter != mEventListeners.end())
         {
             for(Listeners::iterator iterCallback = iter->second.begin() ; iterCallback != iter->second.end() ; )
             {
-                if(iterCallback->first == listener)
+				if (iterCallback->second == key)
                 {
                     iterCallback = iter->second.erase(iterCallback);
                 }
