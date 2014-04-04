@@ -118,7 +118,7 @@ namespace dragonBones
                 {
                     if(mDisplayNode->node->getParent())
                     {
-                        mDisplayNode->node->removeFromParent();
+                        mDisplayNode->node->removeFromParentAndCleanup(false);
                     }
                     static int zorder = 0;
                     parent->node->addChild(mDisplayNode->node , index == -1 ? zorder-- : index);
