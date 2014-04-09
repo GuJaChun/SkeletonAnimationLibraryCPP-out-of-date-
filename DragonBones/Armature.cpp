@@ -53,19 +53,27 @@ namespace dragonBones
             userData = 0;
             
             _animation->dispose();
-            
-            for(size_t i = 0 ; i < _slotList.size() ; i ++)
-            {
-                _slotList[i]->dispose();
-                delete _slotList[i];
-            }
-            
-            for(size_t i = 0 ; i < _boneList.size() ; i ++)
-            {
-                _boneList[i]->dispose();
-                delete _boneList[i];
-            }
-            
+
+			for (size_t i = 0; i < _slotList.size(); i++)
+			{
+				_slotList[i]->dispose();
+			}
+
+			for (size_t i = 0; i < _boneList.size(); i++)
+			{
+				_boneList[i]->dispose();
+			}
+
+			for (size_t i = 0; i < _slotList.size(); i++)
+			{
+				delete _slotList[i];
+			}
+
+			for (size_t i = 0; i < _boneList.size(); i++)
+			{
+				delete _boneList[i];
+			}
+
             _slotList.clear();
             _boneList.clear();
             for(size_t i = 0 ; i < _eventList.size() ; i ++)
