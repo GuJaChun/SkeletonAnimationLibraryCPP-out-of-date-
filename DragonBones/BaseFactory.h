@@ -29,6 +29,9 @@ namespace dragonBones
     public:
         BaseFactory();
         
+        //add load function for SkeletonFile and TextureAtlasFile
+        virtual void loadSkeletonFile(const String &skeletonFile , const String &name  = "") = 0;
+        virtual void loadTextureAtlasFile(const String &textureAtlasFile , const String &name = "") = 0;
         /**
          * Parses the raw data and returns a SkeletonData instance.    
          * @example 

@@ -127,6 +127,9 @@ namespace dragonBones
         
         /** @private */
         virtual Object* generateDisplay(ITextureAtlas *textureAtlas, const String &fullName, Number pivotX, Number pivotY);
+
+        virtual void loadSkeletonFile(const String &skeletonFile , const String &name  = "");
+        virtual void loadTextureAtlasFile(const String &textureAtlasFile , const String &name  = "");
     };
 };
 #endif // __COCOS2DX_FACTORY_H__
