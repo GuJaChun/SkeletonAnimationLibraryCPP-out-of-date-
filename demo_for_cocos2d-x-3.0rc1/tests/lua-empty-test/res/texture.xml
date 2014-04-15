@@ -1,4 +1,4 @@
-<TextureAtlas name="Zombie" imagePath="res/texture.png">
+<TextureAtlas name="Zombie" imagePath="texture.png">
   <SubTexture name="Zombie_balloon_folder/Zombie_balloon_top" x="230" y="269" width="39" height="43"/>
   <SubTexture name="Zombie_balloon_folder/Zombie_balloon_bottom" x="287" y="290" width="14" height="5"/>
   <SubTexture name="Zombie_balloon_folder/Zombie_balloon_string" x="419" y="203" width="8" height="15"/>
