@@ -120,7 +120,7 @@ namespace dragonBones
 			// 使用XML解析器载入skeleton的xml
 			dragonBones::XMLDocument doc;
 			auto date = cocos2d::FileUtils::getInstance()->getDataFromFile(skeletonFile);
-			doc.Parse(reinterpret_cast<char*>(date.getBytes()));
+			doc.Parse(reinterpret_cast<char*>(date.getBytes()), date.getSize());
 
 			// 解析骨骼动画数据
 			SkeletonData *skeleton = parser.parseSkeletonData(doc.RootElement());
@@ -134,7 +134,7 @@ namespace dragonBones
 			// 载入皮肤数据
 			dragonBones::XMLDocument doc;
 			auto date = cocos2d::FileUtils::getInstance()->getDataFromFile(textureAtlasFile);
-			doc.Parse(reinterpret_cast<char*>(date.getBytes()));
+			doc.Parse(reinterpret_cast<char*>(date.getBytes()), date.getSize());
 
 			int pos = textureAtlasFile.find_last_of("/");
 			if (std::string::npos != pos){
