@@ -364,7 +364,9 @@ namespace dragonBones
                     {
                         helpArray[i] = childArmature;
                     }
-                    break;
+				   //fix by Wayne Dimart:
+                   // break; we don't use break here, or will crach the program due to incomplete helpArray.
+					continue;
                 }
                 else
                 {
