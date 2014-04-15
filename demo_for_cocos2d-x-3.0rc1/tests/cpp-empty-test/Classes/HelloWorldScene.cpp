@@ -1,5 +1,8 @@
 #include "HelloWorldScene.h"
 #include "AppMacros.h"
+#include "DragonBones/Cocos2dxFactory.h"
+#include "DragonBones/XMLDataParser.h"
+#include "DragonBones/AnimationEvent.h"
 
 USING_NS_CC;
 
@@ -29,6 +32,8 @@ bool HelloWorld::init()
         return false;
     }
     
+	arm = nullptr;
+
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
 
@@ -54,24 +59,26 @@ bool HelloWorld::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-    
-    auto label = LabelTTF::create("Hello World", "Arial", TITLE_FONT_SIZE);
-    
-    // position the label on the center of the screen
-    label->setPosition(Point(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
+    dragonBones::Cocos2dxFactory fac;
+	fac.loadSkeletonFile("skeleton.xml" , "");
+	fac.loadTextureAtlasFile("texture.xml" , "");
 
-    // add the label as a child to this layer
-    this->addChild(label, 1);
+	arm = fac.buildArmature("Zombie_polevaulter" , "" , "Zombie");
+	auto skeletonNode = dynamic_cast<dragonBones::CocosNode*>(arm->getDisplay())->getNode();
+	skeletonNode->setPosition(100, 200);
+	this->addChild(skeletonNode);
 
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
+	arm->addEventListener(
+		dragonBones::AnimationEvent::LOOP_COMPLETE,
+		[](dragonBones::Event *e){
+			CCLOG("arm event %s", dragonBones::AnimationEvent::LOOP_COMPLETE.c_str());
+		},
+		"key"
+		);
 
-    // position the sprite on the center of the screen
-    sprite->setPosition(Point(visibleSize / 2) + origin);
+	arm->getAnimation()->gotoAndPlay("anim_run");
 
-    // add the sprite as a child to this layer
-    this->addChild(sprite);
+	this->scheduleUpdate();
     
     return true;
 }
@@ -88,4 +95,12 @@ void HelloWorld::menuCloseCallback(Ref* sender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void HelloWorld::update( float f )
+{
+	if (arm)
+	{
+		arm->advanceTime(f);
+	}
 }
