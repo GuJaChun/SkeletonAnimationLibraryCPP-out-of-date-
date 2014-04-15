@@ -117,13 +117,10 @@ namespace dragonBones
 		void Cocos2dxFactory::loadSkeletonFile(const String &skeletonFile , const String &name)
 		{
 			dragonBones::XMLDataParser parser;
-			ssize_t dummySize;
 			// 使用XML解析器载入skeleton的xml
 			dragonBones::XMLDocument doc;
-			unsigned char* skeleton_data = cocos2d::FileUtils::sharedFileUtils()->
-				getFileData(skeletonFile.c_str(), "rb", &dummySize);
-			doc.Parse(reinterpret_cast<char*>(skeleton_data));
-			delete[] skeleton_data;
+			auto date = cocos2d::FileUtils::getInstance()->getDataFromFile(skeletonFile);
+			doc.Parse(reinterpret_cast<char*>(date.getBytes()), date.getSize());
 
 			// 解析骨骼动画数据
 			SkeletonData *skeleton = parser.parseSkeletonData(doc.RootElement());
@@ -134,13 +131,10 @@ namespace dragonBones
 		void Cocos2dxFactory::loadTextureAtlasFile(const String &textureAtlasFile , const String &name)
 		{
 			dragonBones::XMLDataParser parser;
-			ssize_t dummySize;
 			// 载入皮肤数据
 			dragonBones::XMLDocument doc;
-			unsigned char* texture_data = cocos2d::FileUtils::sharedFileUtils()->
-				getFileData(textureAtlasFile.c_str(), "rb", &dummySize);
-			doc.Parse(reinterpret_cast<char*>(texture_data));
-			delete[] texture_data;
+			auto date = cocos2d::FileUtils::getInstance()->getDataFromFile(textureAtlasFile);
+			doc.Parse(reinterpret_cast<char*>(date.getBytes()), date.getSize());
 
 			int pos = textureAtlasFile.find_last_of("/");
 			if (std::string::npos != pos){
