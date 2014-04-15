@@ -119,7 +119,7 @@ namespace dragonBones
         Animation::Animation(Armature *armature)
         {
             _armature = armature;
-            
+            _lastAnimationState = 0;
             _isPlaying = false;
             _isActive = false;
             tweenEnabled = true;
