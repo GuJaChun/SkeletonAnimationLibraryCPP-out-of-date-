@@ -8,6 +8,7 @@
 #include "XMLDataParser.h"
 #include "platform/CCFileUtils.h"
 #include "CCNode.h"
+#include "ConstValues.h"
 
 namespace dragonBones
 {
@@ -140,6 +141,16 @@ namespace dragonBones
 				getFileData(textureAtlasFile.c_str(), "rb", &dummySize);
 			doc.Parse(reinterpret_cast<char*>(texture_data));
 			delete[] texture_data;
+
+			int pos = textureAtlasFile.find_last_of("/");
+			if (std::string::npos != pos){
+				std::string base_path = textureAtlasFile.substr(0, pos + 1);
+				
+				std::string img_path = doc.RootElement()->Attribute(ConstValues::A_IMAGE_PATH.c_str());
+				std::string new_img_path = base_path + img_path;
+
+				doc.RootElement()->SetAttribute(ConstValues::A_IMAGE_PATH.c_str(), new_img_path.c_str());
+			}
 
 			// ½âÎöÆ¤·ôÊý¾Ý
 			TextureAtlasData *textureAtlasData = parser.parseTextureAtlasData(doc.RootElement());
