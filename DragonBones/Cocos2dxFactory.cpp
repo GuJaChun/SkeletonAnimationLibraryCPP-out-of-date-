@@ -5,6 +5,8 @@
 #include "Cocos2dxTextureAtlas.h"
 #include "Cocos2dxAtlasNode.h"
 #include "cocoa/CCGeometry.h"
+#include "ConstValues.h"
+
 namespace dragonBones
 {
 
@@ -22,7 +24,7 @@ namespace dragonBones
         dragonBones::XMLDocument doc;
         unsigned char* skeleton_data = CCFileUtils::sharedFileUtils()->
         getFileData(skeletonFile.c_str(), "rb", &dummySize);
-        doc.Parse(reinterpret_cast<char*>(skeleton_data));
+        doc.Parse(reinterpret_cast<char*>(skeleton_data),dummySize);
         delete[] skeleton_data;
         
         SkeletonData *skeleton = parser.parseSkeletonData(doc.RootElement());
@@ -37,8 +39,18 @@ namespace dragonBones
         dragonBones::XMLDocument doc;
         unsigned char* texture_data = CCFileUtils::sharedFileUtils()->
         getFileData(textureAtlasFile.c_str(), "rb", &dummySize);
-        doc.Parse(reinterpret_cast<char*>(texture_data));
+        doc.Parse(reinterpret_cast<char*>(texture_data),dummySize);
         delete[] texture_data;
+
+        int pos = textureAtlasFile.find_last_of("/");
+        if (std::string::npos != pos){
+            std::string base_path = textureAtlasFile.substr(0, pos + 1);
+            
+            std::string img_path = doc.RootElement()->Attribute(ConstValues::A_IMAGE_PATH.c_str());
+            std::string new_img_path = base_path + img_path;
+
+            doc.RootElement()->SetAttribute(ConstValues::A_IMAGE_PATH.c_str(), new_img_path.c_str());
+        }
         
         TextureAtlasData *textureAtlasData = parser.parseTextureAtlasData(doc.RootElement());
         addTextureAtlas(new dragonBones::Cocos2dxTextureAtlas(textureAtlasData));
