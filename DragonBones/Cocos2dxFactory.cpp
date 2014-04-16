@@ -6,6 +6,8 @@
 #include "Cocos2dxAtlasNode.h"
 #include "cocoa/CCGeometry.h"
 #include "ConstValues.h"
+#include "XMLDataParser.h"
+#include "platform/CCFileUtils.h"
 
 namespace dragonBones
 {
@@ -22,7 +24,7 @@ namespace dragonBones
         unsigned long dummySize;
         
         dragonBones::XMLDocument doc;
-        unsigned char* skeleton_data = CCFileUtils::sharedFileUtils()->
+        unsigned char* skeleton_data = cocos2d::CCFileUtils::sharedFileUtils()->
         getFileData(skeletonFile.c_str(), "rb", &dummySize);
         doc.Parse(reinterpret_cast<char*>(skeleton_data),dummySize);
         delete[] skeleton_data;
@@ -37,7 +39,7 @@ namespace dragonBones
         unsigned long dummySize;
         
         dragonBones::XMLDocument doc;
-        unsigned char* texture_data = CCFileUtils::sharedFileUtils()->
+        unsigned char* texture_data = cocos2d::CCFileUtils::sharedFileUtils()->
         getFileData(textureAtlasFile.c_str(), "rb", &dummySize);
         doc.Parse(reinterpret_cast<char*>(texture_data),dummySize);
         delete[] texture_data;
