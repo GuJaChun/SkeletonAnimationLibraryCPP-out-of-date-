@@ -4,6 +4,7 @@
 #include "TransformFrame.h"
 #include "AnimationData.h"
 #include "ColorTransform.h"
+#include <stdlib.h>
 namespace dragonBones
 {
 

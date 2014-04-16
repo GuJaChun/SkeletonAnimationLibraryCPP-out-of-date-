@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-
+#include <float.h>
 namespace dragonBones
 {
     typedef std::vector<char> ByteArray;
