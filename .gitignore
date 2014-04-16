@@ -41,7 +41,7 @@ libs/
 bin/
 obj/
 gen/
-assets/
+assets/**
 local.properties
 
 # Ignore python compiled files
