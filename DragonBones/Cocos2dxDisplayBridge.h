@@ -1,4 +1,4 @@
-#ifndef __COCOS2DX_DISPLAY_BRIDGE_H__
+﻿#ifndef __COCOS2DX_DISPLAY_BRIDGE_H__
 #define __COCOS2DX_DISPLAY_BRIDGE_H__
 #include "preDB.h"
 #include "IDisplayBridge.h"
