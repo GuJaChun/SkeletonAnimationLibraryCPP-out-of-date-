@@ -88,3 +88,5 @@ tools/jenkins_scripts/mac/android/userconf.ini
 
 # CTags
 tags
+# Dependency information of project
+.project-deps

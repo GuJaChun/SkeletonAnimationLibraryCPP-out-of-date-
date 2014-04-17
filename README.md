@@ -8,10 +8,33 @@ SkeletonAnimationLibraryCPP for cocos2d-x3.0rc1
 
 # Build & Run
 
+## For Windows
+
 1. 使用VS2012或更高版本打开 `demo_for_cocos2d-x-3.0rc1/build/cocos2d-win32.vc2012.sln`
 2. Build Debug或Release
 3. Run lua-empty-test
 4. Goodluck!
+
+## For Android
+
+First, source tools/env-ndk-build to setup necessary environment variables for
+ndk-build.
+
+```sh
+source tools/env-ndk-build
+```
+
+NDK_ROOT and COCOS2DX_SRC_ROOT need to be set before sourcing this script. You
+can also create a .project-deps file in the root directory of this project to
+set NDK_ROOT and/or COCOS2DX_SRC_ROOT.
+
+After that, you can run ndk-build under jni directory of application's projects
+to build the native library. For example:
+
+```sh
+cd demo_for_cocos2d-x-2.2.2/samples/Cpp/HelloCpp/proj.android/jni
+$NDK_ROOT/ndk-build
+```
 
 # DragonBones源码结构
 

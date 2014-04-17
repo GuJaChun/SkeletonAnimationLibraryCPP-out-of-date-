@@ -10,6 +10,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/HelloWorldScene.cpp
 
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
+
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static \

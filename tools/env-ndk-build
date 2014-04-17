@@ -1,34 +1,37 @@
 #!/bin/bash
 
-if [ "$NDK_ROOT" == "" ]; then
-    echo "Please set NDK_ROOT!"
-    return 1
-fi
-if [ "$COCOS2DX_SRC_ROOT" == "" ]; then
-    echo "Please set COCOS2DX_SRC_ROOT!"
-    return 1
-fi
-
-if [ "$1" == "-s" ]; then
-    _build_external_from_source=1
-elif [ "$1" != "" ]; then
-    echo "Usage: source env-ndk-build [-s]"
-fi
-
 _DB_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 
-echo "NDK_ROOT=$NDK_ROOT"
-echo "COCOS2DX_SRC_ROOT=$COCOS2DX_SRC_ROOT"
-echo "DRAGONBONES_SRC_ROOT=$_DB_DIR"
-
-_COCOS2DX_THIRDPARTY_DIR=${COCOS2DX_SRC_ROOT}/cocos2dx/platform/third_party/android
-if [ "$_build_external_from_source" == "1" ]; then
-    _COCOS2DX_THIRDPARTY_DIR="$_COCOS2DX_THIRDPARTY_DIR/source"
-else
-    _COCOS2DX_THIRDPARTY_DIR="$_COCOS2DX_THIRDPARTY_DIR/prebuilt"
+if [ -e "$_DB_DIR/.project-deps" ]; then
+    source "$_DB_DIR/.project-deps"
 fi
-export NDK_MODULE_PATH=$_DB_DIR:$COCOS2DX_SRC_ROOT:$_COCOS2DX_THIRDPARTY_DIR
 
-unset _COCOS2DX_THIRDPARTY_DIR
-unset _DB_DIR
-unset _build_external_from_source
+if [ "$NDK_ROOT" == "" ]; then
+    echo "Please set NDK_ROOT!"
+elif [ "$COCOS2DX_SRC_ROOT" == "" ]; then
+    echo "Please set COCOS2DX_SRC_ROOT!"
+else
+  if [ "$1" == "-s" ]; then
+      _build_external_from_source=1
+  elif [ "$1" != "" ]; then
+      echo "Usage: source env-ndk-build [-s]"
+  fi
+  
+  echo "NDK_ROOT=$NDK_ROOT"
+  echo "COCOS2DX_SRC_ROOT=$COCOS2DX_SRC_ROOT"
+  echo "DRAGONBONES_SRC_ROOT=$_DB_DIR"
+  
+  _COCOS2DX_THIRDPARTY_DIR=${COCOS2DX_SRC_ROOT}/cocos2dx/platform/third_party/android
+  if [ "$_build_external_from_source" == "1" ]; then
+      _COCOS2DX_THIRDPARTY_DIR="$_COCOS2DX_THIRDPARTY_DIR/source"
+  else
+      _COCOS2DX_THIRDPARTY_DIR="$_COCOS2DX_THIRDPARTY_DIR/prebuilt"
+  fi
+  export NDK_MODULE_PATH=$_DB_DIR:$COCOS2DX_SRC_ROOT:$_COCOS2DX_THIRDPARTY_DIR
+  
+  unset _COCOS2DX_THIRDPARTY_DIR
+  unset _build_external_from_source
+  unset _DB_DIR
+  return 0
+fi
+return 1
