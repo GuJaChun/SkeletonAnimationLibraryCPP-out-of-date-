@@ -1,13 +1,14 @@
 #include "HelloWorldScene.h"
 #include "AppMacros.h"
 
+/*
 #include "XMLDataParser.h"
 #include "Cocos2dxFactory.h"
 #include "Cocos2dxTextureAtlas.h"
 #include "TimelineState.h"
-#include "AnimationState.h"
+#include "AnimationState.h"*/
 #include "platform/CCFileUtils.h"
-
+#include "DragonBonesHeaders.h"
 USING_NS_CC;
 
 
@@ -82,11 +83,22 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
     this->addChild(pSprite, 0);
     
-    createSkeletonBody();
+	dragonBones::CCDragonBones *m_bones = dragonBones::CCDragonBones::create("skeleton.xml", "Zombie","Zombie_polevaulter");
+	this->addChild(m_bones);
+	m_bones->getDisplayNode()->setPosition(300,300);
+	m_bones->gotoAndPlay("anim_run");
+	
+	//TODO: try use CCCallFuncND to encapsule callback.
+	std::function<void(dragonBones::Event*)> f =  std::bind(&HelloWorld::animListener, this,std::placeholders::_1);
+	m_bones->addEventListener(dragonBones::AnimationEvent::LOOP_COMPLETE,f,"mykey");
+    //createSkeletonBody();
     return true;
 }
 
-
+void HelloWorld::animListener(dragonBones::Event *event)
+{
+	CCLog("Event Triggered:%s",event->getType().c_str());
+}
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
@@ -101,7 +113,7 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 
 void HelloWorld::createSkeletonBody()
 {
-    dragonBones::XMLDataParser parser;
+  /*  dragonBones::XMLDataParser parser;
 
     unsigned long dummySize;
 
@@ -140,15 +152,16 @@ void HelloWorld::createSkeletonBody()
 
     // 每帧更新动画，每帧都会调用update
     this->scheduleUpdate();
+	*/
 }
 
 void HelloWorld::update( float dt )
 {
-    CC_UNUSED_PARAM(dt);
+   /* CC_UNUSED_PARAM(dt);
     if(mArm)
     {
         // 每帧都要跑啊
         mArm->advanceTime(dt);
-    }
+    }*/
 }
 

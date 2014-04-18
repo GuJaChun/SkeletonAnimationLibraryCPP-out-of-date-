@@ -107,6 +107,9 @@
     <ClCompile Include="..\..\..\..\..\DragonBones\dbtinyxml2.cpp">
       <Filter>dragonBones</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\DragonBones\CCDragonBones.cpp">
+      <Filter>dragonBones</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -296,6 +299,12 @@
       <Filter>dragonBones</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\DragonBones\dbtinyxml2.h">
+      <Filter>dragonBones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\DragonBones\CCDragonBones.h">
+      <Filter>dragonBones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\DragonBones\DragonBonesHeaders.h">
       <Filter>dragonBones</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include "Cocos2dxFactory.h"
+#include "DragonBonesHeaders.h"
 
 class HelloWorld : public cocos2d::CCLayer
 {
@@ -18,8 +18,8 @@ public:
     // a selector callback
     void menuCloseCallback(CCObject* pSender);
 
-    virtual void update(float dt);;
-
+    virtual void update(float dt);
+	void animListener(dragonBones::Event *event);
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
 

@@ -131,6 +131,7 @@
     <ClCompile Include="..\..\..\..\..\DragonBones\BaseFactory.cpp" />
     <ClCompile Include="..\..\..\..\..\DragonBones\Bone.cpp" />
     <ClCompile Include="..\..\..\..\..\DragonBones\BytesType.cpp" />
+    <ClCompile Include="..\..\..\..\..\DragonBones\CCDragonBones.cpp" />
     <ClCompile Include="..\..\..\..\..\DragonBones\Cocos2dxAtlasNode.cpp" />
     <ClCompile Include="..\..\..\..\..\DragonBones\Cocos2dxDisplayBridge.cpp" />
     <ClCompile Include="..\..\..\..\..\DragonBones\Cocos2dxFactory.cpp" />
@@ -167,6 +168,7 @@
     <ClInclude Include="..\..\..\..\..\DragonBones\Bone.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\BoneData.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\BytesType.h" />
+    <ClInclude Include="..\..\..\..\..\DragonBones\CCDragonBones.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\checkBytesTailisXML.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\Cocos2dxAtlasNode.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\Cocos2dxDisplayBridge.h" />
@@ -181,6 +183,7 @@
     <ClInclude Include="..\..\..\..\..\DragonBones\DecompressedData.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\DisplayData.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\DragonBones.h" />
+    <ClInclude Include="..\..\..\..\..\DragonBones\DragonBonesHeaders.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\dragonBones_internal.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\Event.h" />
     <ClInclude Include="..\..\..\..\..\DragonBones\Frame.h" />

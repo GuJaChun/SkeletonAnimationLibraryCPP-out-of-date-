@@ -53,7 +53,7 @@
 #include "TransformTimeline.h"
 #include "TransformUtil.h"
 #include "XMLDataParser.h" 
-
+#include "CCDragonBones.h"  
 
 
 
