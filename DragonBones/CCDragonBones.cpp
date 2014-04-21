@@ -72,13 +72,19 @@ namespace dragonBones {
     {
         return m_Armature;
     }
-    void  CCDragonBones::addEventListener(
-                                          const String &type,
-                                          EventDispatcher::Function listener,
-                                          const String &key)
-    { 
-        m_Armature->addEventListener(type, listener, key);
+	
+    void  CCDragonBones::addEventListener(const String &type,const String &key, cocos2d::CCObject*pObj,SEL_CallFuncND callback)
+    {  
+		m_Caller = pObj;
+		m_Callback = callback;
+		std::function<void(Event*)> f =  std::bind(&CCDragonBones::eventBridge, this,std::placeholders::_1); 
+		m_Armature->addEventListener(type, f, key);
     }
+
+
+  void CCDragonBones::eventBridge(Event*e){ 
+	  (m_Caller->*m_Callback)(this,e);   
+  }
     void CCDragonBones::gotoAndPlay(
                 const String &animationName,
                 Number fadeInTime ,

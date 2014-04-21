@@ -19,7 +19,7 @@ public:
     void menuCloseCallback(CCObject* pSender);
 
     virtual void update(float dt);
-	void animListener(dragonBones::Event *event);
+	void animListener(CCNode*node, void*e);
     // implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
 

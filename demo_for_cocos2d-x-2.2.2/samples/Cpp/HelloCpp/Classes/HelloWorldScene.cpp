@@ -89,15 +89,18 @@ bool HelloWorld::init()
 	m_bones->gotoAndPlay("anim_run");
 	
 	//TODO: try use CCCallFuncND to encapsule callback.
-	std::function<void(dragonBones::Event*)> f =  std::bind(&HelloWorld::animListener, this,std::placeholders::_1);
-	m_bones->addEventListener(dragonBones::AnimationEvent::LOOP_COMPLETE,f,"mykey");
-    //createSkeletonBody();
-    return true;
-}
+	//std::function<void(dragonBones::Event*)> f =  std::bind(&HelloWorld::animListener, this,std::placeholders::_1);
 
-void HelloWorld::animListener(dragonBones::Event *event)
+
+	m_bones->addEventListener(dragonBones::AnimationEvent::LOOP_COMPLETE,"mykey",this,callfuncND_selector(HelloWorld::animListener));
+    //createSkeletonBody();
+    return true; 
+}
+ 
+void HelloWorld::animListener(CCNode*node, void*e)
 {
-	CCLog("Event Triggered:%s",event->getType().c_str());
+	dragonBones::Event *_event =(dragonBones::Event *) e;
+	CCLog("Event Triggered:%s",_event->getType().c_str());
 }
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
