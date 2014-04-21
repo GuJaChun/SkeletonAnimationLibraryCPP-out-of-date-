@@ -92,7 +92,7 @@ bool HelloWorld::init()
 	//std::function<void(dragonBones::Event*)> f =  std::bind(&HelloWorld::animListener, this,std::placeholders::_1);
 
 
-	m_bones->addEventListener(dragonBones::AnimationEvent::LOOP_COMPLETE,"mykey",this,callfuncND_selector(HelloWorld::animListener));
+	m_bones->addEventListener(dragonBones::AnimationEvent::LOOP_COMPLETE,"mykey",this,callfuncND_selector(HelloWorld::animListener)); 
     //createSkeletonBody();
     return true; 
 }

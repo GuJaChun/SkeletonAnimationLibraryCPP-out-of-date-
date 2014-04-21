@@ -58,8 +58,10 @@ namespace dragonBones {
                                                                 const String &key,
 																cocos2d::CCObject*pObj,
 																cocos2d::SEL_CallFuncND callback); 
+		bool								   hasEventListener(const String &type);
+		void								   removeEventListener(const String &type, const std::string &key);
+		void								   dispatchEvent(Event *event);
 
-		void                                   eventBridge(Event*e); 
         
     private:
         void                                   initWithArmature(Armature*arm);
@@ -67,6 +69,7 @@ namespace dragonBones {
         Armature*                              m_Armature; 
 		cocos2d::SEL_CallFuncND				   m_Callback;
 		cocos2d::CCObject*					   m_Caller;
+		void                                   eventBridge(Event*e); 
     }; 
 }
 #endif /* defined(__quickcocos2dx__CCDragonBones__) */

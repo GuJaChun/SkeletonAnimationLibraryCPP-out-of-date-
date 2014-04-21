@@ -81,7 +81,19 @@ namespace dragonBones {
 		m_Armature->addEventListener(type, f, key);
     }
 
-
+	
+		bool  CCDragonBones:: hasEventListener(const String &type)
+		{
+			return m_Armature->hasEventListener(type);
+		}
+		void CCDragonBones::removeEventListener(const String &type, const std::string &key)
+		{
+			m_Armature->removeEventListener(type,key);
+		}
+		void CCDragonBones::dispatchEvent(Event *event)
+		{
+			m_Armature->dispatchEvent(event);
+		}
   void CCDragonBones::eventBridge(Event*e){ 
 	  (m_Caller->*m_Callback)(this,e);   
   }
